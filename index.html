@@ -261,9 +261,11 @@
 
     </div>
 
-    <script>
-        // Збережене робоче посилання на веб-додаток Google
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwJsyxHQpAa7mG-auAh8NokmKCb0Dxla0n6CkFVn9mkizw4r1VrelkKv1J1JZFVgSE/exec'; 
+<script>
+        // Посилання зашифровано в Base64, щоб його не було видно в "прописному" тексті коду.
+        // Оригінал: 'https://script.google.com/macros/s/AKfycbwJsyxHQpAa7mG-auAh8NokmKCb0Dxla0n6CkFVn9mkizw4r1VrelkKv1J1JZFVgSE/exec'
+        const _encodedUrl = 'aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J3SnN5WEhRcEFhN21HLWF1QWg4Tm9rbUtDYjBEeGxhMG42Q2tGVm45bWtpendocjFWcmVsS0t2MUoxSlpGVmdTRS9leGVj';
+        const GOOGLE_SCRIPT_URL = atob(_encodedUrl); 
 
         const form = document.getElementById('reportForm');
         const submitBtn = document.getElementById('submitBtn');
@@ -283,7 +285,7 @@
             e.preventDefault();
 
             // Перевірка конфігурації
-            if (GOOGLE_SCRIPT_URL === 'URL_ВАШОГО_БЕКЕНДУ' || GOOGLE_SCRIPT_URL === '') {
+            if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes('URL_ВАШОГО')) {
                 showError("Помилка конфігурації: Посилання на базу даних відсутнє.");
                 return;
             }
@@ -298,18 +300,15 @@
             };
 
             try {
-                // Використовуємо cors режим для повноцінної перевірки
                 const response = await fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
-                    mode: 'no-cors', // Вирішує проблеми з CORS на локальних доменах
+                    mode: 'no-cors', 
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify(payload)
                 });
 
-                // При mode: 'no-cors' браузер повертає непрозору відповідь (status 0).
-                // У цьому режимі, якщо не виникло виключення (catch), повідомлення точно доставлено до Google.
                 showSuccess();
                 
             } catch (error) {
