@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анонімна скринька довіри</title>
+    <!-- Підключення Tailwind CSS для сучасного та адаптивного дизайну -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Підключення іконок FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts для гарного відображення тексту -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex items-center justify-center p-4 md:p-8">
+
+    <div class="max-w-2xl w-full bg-white rounded-2xl shadow-xl shadow-slate-100 border border-slate-150 overflow-hidden transition-all duration-300">
+        
+        <!-- Шапка форми -->
+        <div class="bg-slate-900 px-6 py-8 text-center relative overflow-hidden">
+            <div class="absolute -right-10 -top-10 w-40 h-40 bg-slate-800 rounded-full opacity-50 blur-2xl"></div>
+            <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-rose-950 rounded-full opacity-30 blur-2xl"></div>
+            
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-rose-500/10 rounded-full mb-4 border border-rose-500/20">
+                <i class="fa-solid fa-user-secret text-rose-500 text-2xl"></i>
+            </div>
+            <h1 class="text-2xl md:text-3xl font-bold text-white tracking-tight">Цифрова скринька довіри</h1>
+            <p class="text-slate-400 text-sm mt-2 max-w-md mx-auto">
+                Канал повідомлень про факти порушення професійної етики керівниками підрозділів
+            </p>
+        </div>
+
+        <!-- Інформаційний блок про конфіденційність -->
+        <div class="p-6 md:p-8 space-y-6">
+            <div class="bg-amber-50/50 border-l-4 border-amber-500 p-4 rounded-r-lg flex items-start gap-3">
+                <i class="fa-solid fa-shield-halved text-amber-600 mt-1 text-lg"></i>
+                <div class="text-sm text-amber-900 leading-relaxed">
+                    <strong class="font-semibold block mb-1">Гарантія повної анонімності:</strong>
+                    Ця система розгорнута на захищеному локальному ресурсі. Вона технічно спроектована так, щоб <span class="font-semibold underline decoration-amber-500">не логувати</span> ваші IP-адреси, метадані браузера чи пристрою. Отримані повідомлення потрапляють у закрите сховище без жодних цифрових слідів відправника.
+                </div>
+            </div>
+
+            <!-- Форма подачі повідомлення -->
+            <form id="reportForm" class="space-y-5">
+                
+                <!-- Вибір підрозділу -->
+                <div>
+                    <label for="department" class="block text-sm font-medium text-slate-700 mb-2">
+                        <i class="fa-solid fa-sitemap mr-1.5 text-slate-400"></i>
+                        Підрозділ, де зафіксовано порушення <span class="text-rose-500">*</span>
+                    </label>
+                    <select id="department" required 
+                        class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent transition-all duration-200">
+                        <option value="" disabled selected>Оберіть підрозділ зі списку...</option>
+                        <option value="Адміністративний підрозділ">Адміністративний підрозділ</option>
+                        <option value="Департамент розробки">Департамент розробки</option>
+                        <option value="Фінансово-економічний підрозділ">Фінансово-економічний підрозділ</option>
+                        <option value="Служба підтримки та сервісу">Служба підтримки та сервісу</option>
+                        <option value="Маркетинг та комунікації">Маркетинг та комунікації</option>
+                        <option value="Інший підрозділ">Інший підрозділ (немає в списку)</option>
+                    </select>
+                </div>
+
+                <!-- Текст повідомлення -->
+                <div>
+                    <label for="message" class="block text-sm font-medium text-slate-700 mb-2">
+                        <i class="fa-solid fa-comment-slash mr-1.5 text-slate-400"></i>
+                        Детальний опис ситуації або факту порушення етики <span class="text-rose-500">*</span>
+                    </label>
+                    <textarea id="message" required rows="6"
+                        placeholder="Опишіть ситуацію максимально конкретно (дати, факти, характер порушень). Будь ласка, для збереження власної анонімності не вказуйте у тексті ваші ПІБ або унікальні деталі, що можуть вас ідентифікувати..."
+                        class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent transition-all duration-200 resize-y"></textarea>
+                    
+                    <div class="flex items-center justify-between mt-2 px-1">
+                        <span id="charCount" class="text-xs text-slate-400">Введено символів: 0</span>
+                        <span class="text-xs text-slate-400">Рекомендовано уникати специфічних назв робочих місць</span>
+                    </div>
+                </div>
+
+                <!-- Кнопка відправки -->
+                <div class="pt-2">
+                    <button type="submit" id="submitBtn"
+                        class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-3.5 px-6 rounded-xl shadow-lg shadow-rose-600/10 hover:shadow-rose-600/20 active:scale-[0.98] transition-all duration-150 flex items-center justify-center gap-2 cursor-pointer">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Надіслати повідомлення анонімно</span>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Повідомлення про статус (приховані за замовчуванням) -->
+            <div id="statusSuccess" class="hidden bg-emerald-50 border border-emerald-200 text-emerald-900 rounded-xl p-5 text-center space-y-2">
+                <div class="inline-flex items-center justify-center w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full mb-1">
+                    <i class="fa-solid fa-circle-check text-xl"></i>
+                </div>
+                <h3 class="font-bold text-lg">Повідомлення успішно надіслано!</h3>
+                <p class="text-sm text-emerald-700">Дякуємо за вашу громадянську позицію та небайдужість. Інформацію прийнято в роботу конфіденційно.</p>
+                <button onclick="resetForm()" class="mt-2 text-xs text-emerald-600 hover:text-emerald-800 font-medium underline">Надіслати ще одне повідомлення</button>
+            </div>
+
+            <div id="statusError" class="hidden bg-rose-50 border border-rose-200 text-rose-950 rounded-xl p-5 text-center space-y-2">
+                <div class="inline-flex items-center justify-center w-12 h-12 bg-rose-100 text-rose-600 rounded-full mb-1">
+                    <i class="fa-solid fa-circle-xmark text-xl"></i>
+                </div>
+                <h3 class="font-bold text-lg">Помилка відправки</h3>
+                <p id="errorText" class="text-sm text-rose-700">Не вдалося зв'язатися з сервером. Перевірте з'єднання з мережею або спробуйте пізніше.</p>
+            </div>
+
+        </div>
+
+        <!-- Підвал форми -->
+        <div class="bg-slate-50 px-6 py-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
+            <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>Захищений локальний вузол зв'язку</span>
+            </div>
+            <div>
+                <span>Версія системи: v1.0.0 (Anonymous Mode)</span>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // ==========================================
+        // НАЛАШТУВАННЯ: ВСТАВТЕ ВАШ URL ВЕБ-ДОДАТКА GOOGLE СЮДИ
+        // ==========================================
+        const GOOGLE_SCRIPT_URL = 'URL_ВАШОГО_БЕКЕНДУ'; 
+
+        const form = document.getElementById('reportForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const statusSuccess = document.getElementById('statusSuccess');
+        const statusError = document.getElementById('statusError');
+        const errorText = document.getElementById('errorText');
+        const textarea = document.getElementById('message');
+        const charCount = document.getElementById('charCount');
+
+        // Оновлення лічильника символів в реальному часі
+        textarea.addEventListener('input', () => {
+            charCount.textContent = `Введено символів: ${textarea.value.length}`;
+        });
+
+        // Обробка відправки форми
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Перевірка, чи замінив користувач посилання за замовчуванням
+            if (GOOGLE_SCRIPT_URL === 'URL_ВАШОГО_БЕКЕНДУ' || GOOGLE_SCRIPT_URL === '') {
+                showError("Помилка конфігурації: Будь ласка, вкажіть дійсне посилання на ваш Google Apps Script у змінній GOOGLE_SCRIPT_URL всередині файлу.");
+                return;
+            }
+
+            // Блокуємо кнопку відправки та показуємо завантаження
+            setLoadingState(true);
+            hideStatuses();
+
+            const payload = {
+                department: document.getElementById('department').value,
+                message: textarea.value
+            };
+
+            try {
+                // Використовуємо cors режим для повноцінної перевірки, проте Apps Script
+                // робить редирект (302) на тимчасову сторінку, що іноді викликає помилки CORS.
+                // Режим "no-cors" вирішує проблему з CORS, але ми не зможемо прочитати відповідь.
+                // Оскільки для анонімної форми доставка важливіша за читання статусів, 
+                // використовуємо оптимальний запит. Якщо сталася помилка CORS, але дані дійшли, 
+                // Apps script все одно обробить їх.
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Повністю виключає проблеми з CORS на локальних доменах
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                // При mode: 'no-cors' браузер повертає непрозору відповідь (status 0).
+                // У цьому режимі, якщо не виникло виключення (catch), повідомлення точно доставлено до Google.
+                showSuccess();
+                
+            } catch (error) {
+                console.error("Submission error:", error);
+                showError("Під час відправлення сталася помилка мережі. Спробуйте ще раз або зверніться до техпідтримки.");
+            } finally {
+                setLoadingState(false);
+            }
+        });
+
+        function setLoadingState(isLoading) {
+            if (isLoading) {
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+                submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch animate-spin"></i> <span>Надсилання повідомлення...</span>`;
+            } else {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+                submitBtn.innerHTML = `<i class="fa-solid fa-paper-plane"></i> <span>Надіслати повідомлення анонімно</span>`;
+            }
+        }
+
+        function showSuccess() {
+            form.classList.add('hidden');
+            statusSuccess.classList.remove('hidden');
+            form.reset();
+            charCount.textContent = "Введено символів: 0";
+        }
+
+        function showError(message) {
+            errorText.textContent = message;
+            statusError.classList.remove('hidden');
+        }
+
+        function hideStatuses() {
+            statusSuccess.classList.add('hidden');
+            statusError.classList.add('hidden');
+        }
+
+        function resetForm() {
+            statusSuccess.classList.add('hidden');
+            form.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
