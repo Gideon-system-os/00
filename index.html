@@ -299,18 +299,18 @@
                 message: textarea.value
             };
 
-            try {
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors', 
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
-                });
+           try {
+            // === ОСЬ ЦЕЙ ШМАТОК Я ЗМІНИВ (ЗАБРАВ mode: 'no-cors' ТА ЗМІНИВ ТИП НА text/plain) ===
+            const response = await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'text/plain' 
+                },
+                body: JSON.stringify(payload)
+            });
 
-                showSuccess();
-                
+            // Оскільки ми прибрали no-cors, тепер можна нормально перевірити чи відповів Google
+            showSuccess();
             } catch (error) {
                 console.error("Submission error:", error);
                 showError("Під час відправлення сталася помилка мережі. Спробуйте ще раз.");
