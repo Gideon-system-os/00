@@ -299,24 +299,26 @@
                 message: textarea.value
             };
 
-           try {
-            // === ОСЬ ЦЕЙ ШМАТОК Я ЗМІНИВ (ЗАБРАВ mode: 'no-cors' ТА ЗМІНИВ ТИП НА text/plain) ===
+ry {
+            // Повертаємо no-cors, але міняємо тип контенту на text/plain
+            // Це дозволить обійти захист браузера і доставити дані в Google
             const response = await fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
+                mode: 'no-cors', 
                 headers: {
-                    'Content-Type': 'text/plain' 
+                    'Content-Type': 'text/plain'
                 },
                 body: JSON.stringify(payload)
             });
 
-            // Оскільки ми прибрали no-cors, тепер можна нормально перевірити чи відповів Google
+            // При mode: 'no-cors' браузер не дасть прочитати відповідь,
+            // але якщо ми не вилетіли в помилку мережі (catch) — дані пішли
             showSuccess();
-            } catch (error) {
-                console.error("Submission error:", error);
-                showError("Під час відправлення сталася помилка мережі. Спробуйте ще раз.");
-            } finally {
-                setLoadingState(false);
-            }
+            
+        } catch (error) {
+            console.error("Submission error:", error);
+            showError("Під час відправлення сталася помилка мережі. Спробуйте ще раз.");
+        }
         });
 
         function setLoadingState(isLoading) {
