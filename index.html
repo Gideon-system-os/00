@@ -3,54 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Анонімна лінія довіри для особового складу</title> 
-    <!-- Підключення Tailwind CSS для сучасного та адаптивного дизайну -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Підключення іконок FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts для гарного відображення тексту -->
+    <title>Інформаційна панель довіри</title>
+    <!-- Підключення шрифту Inter та іконок Lucide через CDN -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex items-center justify-center p-4 md:p-8">
+<body class="bg-[#f8fafc] text-slate-800 antialiased min-h-screen flex items-center justify-center p-4 md:p-8">
 
-    <div class="max-w-2xl w-full bg-white rounded-2xl shadow-xl shadow-slate-100 border border-slate-150 overflow-hidden transition-all duration-300">
+    <div class="max-w-6xl w-full bg-white rounded-3xl border border-slate-100 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] overflow-hidden">
         
-        <!-- Шапка форми -->
-        <div class="bg-slate-900 px-6 py-8 text-center relative overflow-hidden">
-            <div class="absolute -right-10 -top-10 w-40 h-40 bg-slate-800 rounded-full opacity-50 blur-2xl"></div>
-            <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-rose-950 rounded-full opacity-30 blur-2xl"></div>
+        <!-- Верхня декоративна смужка -->
+        <div class="h-1.5 w-full bg-gradient-to-r from-blue-600 via-indigo-500 to-sky-400"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-0">
             
-            <div class="inline-flex items-center justify-center w-16 h-16 bg-rose-500/10 rounded-full mb-4 border border-rose-500/20">
-                <i class="fa-solid fa-user-secret text-rose-500 text-2xl"></i>
+            <div class="lg:col-span-5 bg-gradient-to-br from-slate-50 to-blue-50/50 p-8 lg:p-12 border-b lg:border-b-0 lg:border-r border-slate-100 flex flex-col justify-between">
+                <div>
+                    <!-- Декоративний круглий елемент із щитом -->
+                    <div class="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-blue-500/20 mb-8">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.248-8.25-3.285z"></path>
+                        </svg>
+                    </div>
+
+                    <h2 class="text-2xl font-bold text-slate-900 tracking-tight mb-4">
+                        Гарантія повної анонімності
+                    </h2>
+
+                    <div class="space-y-4 text-slate-600 text-sm leading-relaxed">
+                        <p>
+                            Ваша безпека та анонімність — наш абсолютний пріоритет. Цей ресурс розгорнуто на захищеній локальній платформі.
+                        </p>
+                        
+                        <!-- Блок з акцентом на відсутність логування -->
+                        <div class="bg-amber-50/70 border-l-4 border-amber-500 p-4 rounded-r-xl my-5">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-amber-800 block mb-1">Режим повної приватності</span>
+                            <p class="text-amber-900 font-medium">
+                                Система <span class="underline decoration-amber-500 decoration-2 font-bold">не логує</span> та не фіксує вашу IP-адресу, не зчитує унікальний номер пристрою та не вимагає жодної реєстрації чи авторизації.
+                            </p>
+                        </div>
+
+                        <p>
+                            Ми збираємо виключно текст вашого повідомлення. Будь ласка, описуйте факти без зазначення власних персональних даних (прізвища, імені, посади), якщо ви бажаєте залишитися повністю анонімним.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Делікатний підпис внизу блоку -->
+                <div class="mt-8 pt-6 border-t border-slate-100 flex items-center space-x-2 text-xs text-slate-400">
+                    <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"></path>
+                    </svg>
+                    <span>Абсолютна безпека з'єднання</span>
+                </div>
             </div>
-            <h1 class="text-2xl md:text-3xl font-bold text-white tracking-tight">Цифрова скринька довіри</h1>
-            <p class="text-slate-400 text-sm mt-2 max-w-md mx-auto">
-                Інструмент анонімного повідомлення про факти дискримінації, утисків чи приниження
-            </p>
-        </div>
 
-        <!-- Інформаційний блок про конфіденційність -->
-        <div class="p-6 md:p-8 space-y-6">
-            <div class="bg-amber-50/50 border-l-4 border-amber-500 p-4 rounded-r-lg flex items-start gap-3">
-                <i class="fa-solid fa-shield-halved text-amber-600 mt-1 text-lg"></i>
-                <div class="text-sm text-amber-900 leading-relaxed">
-                    <strong class="font-semibold block mb-1">Гарантія повної анонімності:</strong>
-                    Ваша безпека та анонімність — наш пріоритет.
-Цей ресурс розгорнуто на захищеній локальній платформі. Система НЕ фіксує вашу IP-адресу, не зчитує унікальний номер пристрою та не вимагає жодної реєстрації чи авторизації.
-Ми збираємо виключно текст вашого повідомлення. Будь ласка, описуйте факти без зазначення власних персональних даних (прізвища, імені, посади), якщо ви бажаєте залишитися повністю анонімним <span class="font-semibold underline decoration-amber-500">не логувати</span> Про що ви можете повідомити?
+            <div class="lg:col-span-7 p-8 lg:p-12 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900 tracking-tight mb-8 flex items-center">
+                        <span class="inline-block w-2.5 h-2.5 bg-blue-600 rounded-full mr-3"></span>
+                        Про що ви можете повідомити?
+                    </h3>
 
-Утиски та приниження гідності: нецензурна лайка, публічні образи, моральний тиск з боку керівників підрозділів.
-Дискримінація: упереджене ставлення через стать, вік, походження чи інші ознаки при розподілі навантаження, чергувань чи присвоєнні звань.
-Мобінг (цькування): систематичне створення нестерпних умов служби, ізоляція в колективі за вказівкою керівника.
-Порушення професійної етики: зловживання службовим становищем
+                    <!-- Сітка з інформаційними картками порушень -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        
+                        <!-- Картка 1: Утиски та приниження -->
+                        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100/80 transition-all hover:bg-slate-100/50">
+                            <div class="w-9 h-9 rounded-lg bg-red-50 text-red-600 flex items-center justify-center mb-4">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="font-semibold text-slate-900 text-sm mb-1.5">Утиски та приниження гідності</h4>
+                            <p class="text-slate-500 text-xs leading-relaxed">
+                                Нецензурна лайка, публічні образи, моральний тиск з боку керівників підрозділів.
+                            </p>
+                        </div>
+
+                        <!-- Картка 2: Дискримінація -->
+                        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100/80 transition-all hover:bg-slate-100/50">
+                            <div class="w-9 h-9 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 7.5L7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5"></path>
+                                </svg>
+                            </div>
+                            <h4 class="font-semibold text-slate-900 text-sm mb-1.5">Дискримінація</h4>
+                            <p class="text-slate-500 text-xs leading-relaxed">
+                                Упереджене ставлення через стать, вік, походження при розподілі навантаження, чергувань чи звань.
+                            </p>
+                        </div>
+
+                        <!-- Картка 3: Мобінг -->
+                        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100/80 transition-all hover:bg-slate-100/50">
+                            <div class="w-9 h-9 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center mb-4">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"></path>
+                                </svg>
+                            </div>
+                            <h4 class="font-semibold text-slate-900 text-sm mb-1.5">Мобінг (цькування)</h4>
+                            <p class="text-slate-500 text-xs leading-relaxed">
+                                Систематичне створення нестерпних умов служби, ізоляція в колективі за вказівкою керівника.
+                            </p>
+                        </div>
+
+                        <!-- Картка 4: Професійна етика -->
+                        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100/80 transition-all hover:bg-slate-100/50">
+                            <div class="w-9 h-9 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"></path>
+                                </svg>
+                            </div>
+                            <h4 class="font-semibold text-slate-900 text-sm mb-1.5">Порушення професійної етики</h4>
+                            <p class="text-slate-500 text-xs leading-relaxed">
+                                Зловживання службовим становищем або примус до виконання неслужбових завдань.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-slate-100 text-[11px] text-slate-400 leading-normal">
+                    Цей інформаційний блок призначений виключно для ознайомлення перед відправкою звернення. Перевірте, чи відповідає ваш випадок зазначеним критеріям.
                 </div>
             </div>
 
